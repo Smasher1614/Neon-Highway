@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: 'Neon Highway | Base L2 Racing Game',
   description: 'Top-down car racing game on Base L2 blockchain. Race, dodge, earn on-chain.',
   keywords: ['Base', 'blockchain', 'racing game', 'Web3', 'L2'],
+  other: {
+    'base:app_id': '6a08900f4c3f57496e83970c',
+  },
 };
 
 export default function RootLayout({
