@@ -121,8 +121,8 @@ export const RACING_GAME_ABI = [
 ] as const;
 
 // ── Builder tracking constants (required in every Base transaction) ──
-export const BUILDER_CODE = 'bc_sjkexp2o';
-export const ENCODED_BUILDER_STRING = '0x62635f736a6b6578703 26f0b00802180218021 80218021802180218021 80218021v';
+export const BUILDER_CODE = 'bc_97njr37d';
+export const ENCODED_BUILDER_STRING = '0x62635f39376e6a723337640b0080218021802180218021802180218021';
 
 // ── Contract address on Base Mainnet ──
 // TODO: Replace with actual deployed address after running: npx hardhat ignition deploy --network base
