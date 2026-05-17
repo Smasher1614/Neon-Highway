@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Top-down car racing game on Base L2 blockchain. Race, dodge, earn on-chain.',
   keywords: ['Base', 'blockchain', 'racing game', 'Web3', 'L2'],
   other: {
-    'base:app_id': '6a08900f4c3f57496e83970c',
+    'base:app_id': '6a088f204c3f57496e839709',
   },
 };
 
