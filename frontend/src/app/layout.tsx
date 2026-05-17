@@ -26,6 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${rajdhani.variable}`}>
+      <head>
+        <meta name="base:app_id" content="6a088f204c3f57496e839709" />
+      </head>
       <body className="bg-[#070b14] text-white min-h-screen antialiased">
         <Providers>
           {children}
