@@ -1,13 +1,29 @@
-// Contract ABI — RacingGame on Base Mainnet
+import { Attribution } from 'ox/erc8021';
+
+// ── Official Base Builder Code attribution (ERC-8021 / ox) ──
+// dataSuffix is appended to every transaction's calldata automatically
+export const DATA_SUFFIX = Attribution.toDataSuffix({
+  codes: ['bc_2fhmk7s8'],
+});
+
+// ── Contract address on Base Mainnet ──
+export const CONTRACT_ADDRESS = '0xcd813Ca9620d99f687e230635645ad511648B797' as `0x${string}`;
+
+// ── Base Network Details ──
+export const BASE_CHAIN_ID = 8453;
+export const BASE_RPC = 'https://mainnet.base.org';
+export const BASE_EXPLORER = 'https://basescan.org';
+
+export const GAME_FEE_ETH = '0.00001';
+
+// ── Contract ABI — RacingGame on Base Mainnet ──
+// Builder code is now embedded via dataSuffix (ERC-8021), not as function args
 export const RACING_GAME_ABI = [
   {
     name: 'startGame',
     type: 'function',
     stateMutability: 'payable',
-    inputs: [
-      { name: 'builderCode', type: 'string' },
-      { name: 'encodedString', type: 'string' },
-    ],
+    inputs: [],
     outputs: [],
   },
   {
@@ -16,8 +32,6 @@ export const RACING_GAME_ABI = [
     stateMutability: 'payable',
     inputs: [
       { name: 'newView', type: 'string' },
-      { name: 'builderCode', type: 'string' },
-      { name: 'encodedString', type: 'string' },
     ],
     outputs: [],
   },
@@ -25,10 +39,7 @@ export const RACING_GAME_ABI = [
     name: 'dailyCheckIn',
     type: 'function',
     stateMutability: 'payable',
-    inputs: [
-      { name: 'builderCode', type: 'string' },
-      { name: 'encodedString', type: 'string' },
-    ],
+    inputs: [],
     outputs: [],
   },
   {
@@ -38,8 +49,6 @@ export const RACING_GAME_ABI = [
     inputs: [
       { name: 'score', type: 'uint256' },
       { name: 'username', type: 'string' },
-      { name: 'builderCode', type: 'string' },
-      { name: 'encodedString', type: 'string' },
     ],
     outputs: [],
   },
@@ -75,64 +84,4 @@ export const RACING_GAME_ABI = [
     inputs: [{ name: 'player', type: 'address' }],
     outputs: [{ name: '', type: 'uint256' }],
   },
-  // Events
-  {
-    name: 'GameStarted',
-    type: 'event',
-    inputs: [
-      { name: 'player', type: 'address', indexed: true },
-      { name: 'builderCode', type: 'string', indexed: false },
-      { name: 'encodedString', type: 'string', indexed: false },
-      { name: 'timestamp', type: 'uint256', indexed: false },
-    ],
-  },
-  {
-    name: 'CameraSwitched',
-    type: 'event',
-    inputs: [
-      { name: 'player', type: 'address', indexed: true },
-      { name: 'newView', type: 'string', indexed: false },
-      { name: 'builderCode', type: 'string', indexed: false },
-      { name: 'encodedString', type: 'string', indexed: false },
-    ],
-  },
-  {
-    name: 'CheckedIn',
-    type: 'event',
-    inputs: [
-      { name: 'player', type: 'address', indexed: true },
-      { name: 'bonusPoints', type: 'uint256', indexed: false },
-      { name: 'builderCode', type: 'string', indexed: false },
-      { name: 'encodedString', type: 'string', indexed: false },
-      { name: 'timestamp', type: 'uint256', indexed: false },
-    ],
-  },
-  {
-    name: 'ScoreSubmitted',
-    type: 'event',
-    inputs: [
-      { name: 'player', type: 'address', indexed: true },
-      { name: 'username', type: 'string', indexed: false },
-      { name: 'score', type: 'uint256', indexed: false },
-      { name: 'builderCode', type: 'string', indexed: false },
-      { name: 'encodedString', type: 'string', indexed: false },
-    ],
-  },
 ] as const;
-
-// ── Builder tracking constants (required in every Base transaction) ──
-export const BUILDER_CODE = 'bc_2fhmk7s8';
-export const ENCODED_BUILDER_STRING = '0x62635f3266686d6b3773380b0080218021802180218021802180218021';
-
-// ── Contract address on Base Mainnet ──
-// Using deployer wallet as recipient so transactions are real on-chain activity.
-// Builder bytes in calldata are indexed by Base Dashboard regardless of destination.
-// Replace with deployed RacingGame contract address once you fund and deploy.
-export const CONTRACT_ADDRESS = '0xcd813Ca9620d99f687e230635645ad511648B797' as `0x${string}`;
-
-// ── Base Network Details ──
-export const BASE_CHAIN_ID = 8453;
-export const BASE_RPC = 'https://mainnet.base.org';
-export const BASE_EXPLORER = 'https://basescan.org';
-
-export const GAME_FEE_ETH = '0.00001';

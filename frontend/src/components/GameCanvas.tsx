@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther } from 'viem';
-import { RACING_GAME_ABI, CONTRACT_ADDRESS, BUILDER_CODE, ENCODED_BUILDER_STRING, GAME_FEE_ETH } from '../lib/contract';
+import { RACING_GAME_ABI, CONTRACT_ADDRESS, DATA_SUFFIX, GAME_FEE_ETH } from '../lib/contract';
 
 // ──────────────────────────────────────────────────────────────
 // Constants
@@ -290,8 +290,9 @@ export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCa
       address: CONTRACT_ADDRESS,
       abi: RACING_GAME_ABI,
       functionName: 'switchCamera',
-      args: [nextView, BUILDER_CODE, ENCODED_BUILDER_STRING],
+      args: [nextView],
       value: parseEther(GAME_FEE_ETH),
+      dataSuffix: DATA_SUFFIX,
     });
   }, [cameraView, writeCamSwitch]);
 
