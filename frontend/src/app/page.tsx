@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi';
 import { parseEther } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { RACING_GAME_ABI, CONTRACT_ADDRESS, GAME_FEE_ETH } from '../lib/contract';
+import { RACING_GAME_ABI, CONTRACT_ADDRESS, GAME_FEE_ETH, DATA_SUFFIX } from '../lib/contract';
 import GameCanvas from '../components/GameCanvas';
 import Leaderboard from '../components/Leaderboard';
 import { NetworkGuard } from '../components/NetworkGuard';
@@ -66,6 +66,7 @@ export default function Home() {
       abi: RACING_GAME_ABI,
       functionName: 'startGame',
       value: parseEther(GAME_FEE_ETH),
+      dataSuffix: DATA_SUFFIX,
     });
   };
 
@@ -76,6 +77,7 @@ export default function Home() {
       functionName: 'submitScore',
       args: [BigInt(finalScore), username],
       value: parseEther(GAME_FEE_ETH),
+      dataSuffix: DATA_SUFFIX,
     });
   };
 
@@ -85,6 +87,7 @@ export default function Home() {
       abi: RACING_GAME_ABI,
       functionName: 'dailyCheckIn',
       value: parseEther(GAME_FEE_ETH),
+      dataSuffix: DATA_SUFFIX,
     });
   };
 

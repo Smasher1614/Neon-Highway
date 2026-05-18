@@ -14,7 +14,6 @@ import { createConfig, http, WagmiProvider } from 'wagmi';
 import { base } from 'wagmi/chains';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import '@rainbow-me/rainbowkit/styles.css';
-import { Attribution } from 'ox/erc8021';
 
 
 const connectors = connectorsForWallets(
@@ -30,10 +29,6 @@ const connectors = connectorsForWallets(
   }
 );
 
-// ── Official Base Builder Code attribution (ERC-8021 / ox) ──
-// Replace 'BUILDER_CODE_PLACEHOLDER' with your real builder code before going live.
-const DATA_SUFFIX = Attribution.toDataSuffix({ codes: ['BUILDER_CODE_PLACEHOLDER'] });
-
 const config = createConfig({
   connectors,
   chains: [base],
@@ -41,7 +36,6 @@ const config = createConfig({
     [base.id]: http(),
   },
   ssr: false,
-  dataSuffix: DATA_SUFFIX,
 });
 
 const queryClient = new QueryClient({
