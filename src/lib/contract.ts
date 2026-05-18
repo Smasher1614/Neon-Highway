@@ -121,8 +121,8 @@ export const RACING_GAME_ABI = [
 ] as const;
 
 // ── Builder tracking constants (required in every Base transaction) ──
-export const BUILDER_CODE = 'bc_97njr37d';
-export const ENCODED_BUILDER_STRING = '0x62635f39376e6a723337640b0080218021802180218021802180218021';
+export const BUILDER_CODE = 'bc_2fhmk7s8';
+export const ENCODED_BUILDER_STRING = '0x62635f3266686d6b3773380b0080218021802180218021802180218021';
 
 // ── Contract address on Base Mainnet ──
 // Using deployer wallet as recipient so transactions are real on-chain activity.
