@@ -15,6 +15,7 @@ import { base } from 'wagmi/chains';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import '@rainbow-me/rainbowkit/styles.css';
 
+
 const connectors = connectorsForWallets(
   [
     {

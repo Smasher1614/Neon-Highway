@@ -13,7 +13,7 @@ const config: HardhatUserConfig = {
     base: {
       type: "http",
       url: "https://mainnet.base.org",
-      chainType: "generic",
+      chainId: 8453,
       ...(PRIVATE_KEY.startsWith('0x') ? { accounts: [PRIVATE_KEY] } : {}),
     },
   },

@@ -125,8 +125,10 @@ export const BUILDER_CODE = 'bc_97njr37d';
 export const ENCODED_BUILDER_STRING = '0x62635f39376e6a723337640b0080218021802180218021802180218021';
 
 // ── Contract address on Base Mainnet ──
-// TODO: Replace with actual deployed address after running: npx hardhat ignition deploy --network base
-export const CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000000' as `0x${string}`;
+// Using deployer wallet as recipient so transactions are real on-chain activity.
+// Builder bytes in calldata are indexed by Base Dashboard regardless of destination.
+// Replace with deployed RacingGame contract address once you fund and deploy.
+export const CONTRACT_ADDRESS = '0xcd813Ca9620d99f687e230635645ad511648B797' as `0x${string}`;
 
 // ── Base Network Details ──
 export const BASE_CHAIN_ID = 8453;
