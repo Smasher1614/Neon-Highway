@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi';
+import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther } from 'viem';
 import { RACING_GAME_ABI, CONTRACT_ADDRESS, BUILDER_CODE, ENCODED_BUILDER_STRING, GAME_FEE_ETH } from '../lib/contract';
 
@@ -236,7 +236,6 @@ interface GameCanvasProps {
 }
 
 export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCanvasProps) {
-  const { address } = useAccount();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameStateRef = useRef({
     playerX: ROAD_LEFT + ROAD_W / 2 - CAR_W / 2,
@@ -266,53 +265,6 @@ export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCa
   const [crashFlash, setCrashFlash] = useState(false);
 
   const animFrameRef = useRef<number>(0);
-
-  // ── Web3: startGame (auto-fires when GameCanvas mounts) ──
-  const { writeContract: writeStart } = useWriteContract();
-  useEffect(() => {
-    if (!address) return;
-    try {
-      writeStart({
-        address: CONTRACT_ADDRESS,
-        abi: RACING_GAME_ABI,
-        functionName: 'startGame',
-        args: [BUILDER_CODE, ENCODED_BUILDER_STRING],
-        value: parseEther(GAME_FEE_ETH),
-      });
-    } catch (_) { /* silent – user may reject */ }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address]);
-
-  // ── Web3: dailyCheckIn (auto-fires once per wallet session) ──
-  const { writeContract: writeCheckIn } = useWriteContract();
-  useEffect(() => {
-    if (!address) return;
-    try {
-      writeCheckIn({
-        address: CONTRACT_ADDRESS,
-        abi: RACING_GAME_ABI,
-        functionName: 'dailyCheckIn',
-        args: [BUILDER_CODE, ENCODED_BUILDER_STRING],
-        value: parseEther(GAME_FEE_ETH),
-      });
-    } catch (_) { /* silent – cooldown revert expected */ }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address]);
-
-  // ── Web3: submitScore (auto-fires on game over) ──
-  const { writeContract: writeScore } = useWriteContract();
-  const submitScoreOnChain = useCallback((score: number) => {
-    if (!address) return;
-    try {
-      writeScore({
-        address: CONTRACT_ADDRESS,
-        abi: RACING_GAME_ABI,
-        functionName: 'submitScore',
-        args: [BigInt(score), username, BUILDER_CODE, ENCODED_BUILDER_STRING],
-        value: parseEther(GAME_FEE_ETH),
-      });
-    } catch (_) { /* silent */ }
-  }, [address, username, writeScore]);
 
   // ── Web3: Camera switch ──
   const { writeContract: writeCamSwitch, data: camHash, isPending: camPending } = useWriteContract();
@@ -405,7 +357,6 @@ export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCa
       if (gs.lives <= 0) {
         gs.isDead = true;
         setIsGameOver(true);
-        submitScoreOnChain(gs.score);
         onGameOver(gs.score);
       }
     };
