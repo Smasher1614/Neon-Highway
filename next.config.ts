@@ -1,15 +1,3 @@
 import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        indexedDB: false,
-      };
-    }
-    return config;
-  },
-};
-
+const nextConfig: NextConfig = { turbopack: {} };
 export default nextConfig;
