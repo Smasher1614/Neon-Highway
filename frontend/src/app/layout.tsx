@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Top-down car racing game on Base L2 blockchain. Race, dodge, earn on-chain.',
   keywords: ['Base', 'blockchain', 'racing game', 'Web3', 'L2'],
   other: {
-    'base:app_id': '6a088f204c3f57496e839709',
+    'base:app_id': '6a0b8f204c3f57496e839709',
   },
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${rajdhani.variable}`}>
       <head>
-        <meta name="base:app_id" content="6a088f204c3f57496e839709" />
+        <meta name="base:app_id" content="6a0b8f204c3f57496e839709" />
       </head>
       <body className="bg-[#070b14] text-white min-h-screen antialiased">
         <Providers>
