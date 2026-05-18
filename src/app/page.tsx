@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi';
 import { parseEther } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { RACING_GAME_ABI, CONTRACT_ADDRESS, BUILDER_CODE, ENCODED_BUILDER_STRING, GAME_FEE_ETH } from '../lib/contract';
+import { RACING_GAME_ABI, CONTRACT_ADDRESS, GAME_FEE_ETH } from '../lib/contract';
 import GameCanvas from '../components/GameCanvas';
 import Leaderboard from '../components/Leaderboard';
 import { NetworkGuard } from '../components/NetworkGuard';
@@ -65,7 +65,6 @@ export default function Home() {
       address: CONTRACT_ADDRESS,
       abi: RACING_GAME_ABI,
       functionName: 'startGame',
-      args: [BUILDER_CODE, ENCODED_BUILDER_STRING],
       value: parseEther(GAME_FEE_ETH),
     });
   };
@@ -75,7 +74,7 @@ export default function Home() {
       address: CONTRACT_ADDRESS,
       abi: RACING_GAME_ABI,
       functionName: 'submitScore',
-      args: [BigInt(finalScore), username, BUILDER_CODE, ENCODED_BUILDER_STRING],
+      args: [BigInt(finalScore), username],
       value: parseEther(GAME_FEE_ETH),
     });
   };
@@ -85,7 +84,6 @@ export default function Home() {
       address: CONTRACT_ADDRESS,
       abi: RACING_GAME_ABI,
       functionName: 'dailyCheckIn',
-      args: [BUILDER_CODE, ENCODED_BUILDER_STRING],
       value: parseEther(GAME_FEE_ETH),
     });
   };
