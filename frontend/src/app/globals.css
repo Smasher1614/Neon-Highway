@@ -203,12 +203,14 @@ html, body {
 }
 .mobile-btn:active { background: rgba(59,130,246,0.25); }
 
-/* ── Responsive: Lobby grid (desktop side-by-side, mobile stacked) ── */
+/* ── Lobby grid: always stacked vertically ── */
 .lobby-grid {
-  display: grid;
-  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-  gap: 28px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 580px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* ── Responsive: Leaderboard columns ── */
@@ -241,11 +243,6 @@ html, body {
 
 /* ── Breakpoint: ≤ 640px (phones) ── */
 @media (max-width: 640px) {
-  /* Lobby: stack vertically */
-  .lobby-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
 
   /* Main padding */
   .main-content {
