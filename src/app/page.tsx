@@ -133,9 +133,15 @@ export default function Home() {
 
           {/* ════════ LOBBY ════════ */}
           {(screen === 'lobby' || screen === 'starting') && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 28, alignItems: 'start' }}>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+                gap: '16px'
+              }}>
 
               {/* Left card */}
+              <div style={{ width: '100%', minWidth: '0', flex: 'none' }}>
               <div className="glass-card">
 
                 {/* Banner */}
@@ -294,9 +300,12 @@ export default function Home() {
                   )}
                 </div>
               </div>
+              </div>
 
               {/* Right: Leaderboard */}
-              <Leaderboard />
+              <div style={{ width: '100%', minWidth: '0', flex: 'none' }}>
+                <Leaderboard />
+              </div>
             </div>
           )}
 
