@@ -107,33 +107,33 @@ export default function Home() {
           background: 'rgba(7,11,20,0.85)',
           backdropFilter: 'blur(20px)',
         }}>
-          <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 20px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div className="site-header-inner">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
               <div style={{
-                width: 34, height: 34, borderRadius: 8,
+                width: 32, height: 32, borderRadius: 8, flexShrink: 0,
                 background: 'rgba(59,130,246,0.15)',
                 border: '1px solid rgba(59,130,246,0.3)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15,
               }}>⚡</div>
-              <span style={{ fontWeight: 900, fontSize: 20, letterSpacing: '-0.01em' }}>
+              <span className="site-logo-text">
                 <span className="neon-blue">NEON</span>
                 <span style={{ color: 'white' }}> HIGHWAY</span>
               </span>
-              <span style={{
+              <span className="base-badge" style={{
                 fontSize: 10, color: '#3b82f6',
                 background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.2)',
-                padding: '3px 10px', borderRadius: 20, fontFamily: 'monospace',
+                padding: '3px 10px', borderRadius: 20, fontFamily: 'monospace', flexShrink: 0,
               }}>Base L2</span>
             </div>
-            <ConnectButton showBalance={false} chainStatus="icon" />
+            <ConnectButton showBalance={false} chainStatus="icon" accountStatus="avatar" />
           </div>
         </header>
 
-        <main style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px' }}>
+        <main className="main-content" style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px' }}>
 
           {/* ════════ LOBBY ════════ */}
           {(screen === 'lobby' || screen === 'starting') && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 28, alignItems: 'start' }}>
+            <div className="lobby-grid">
 
               {/* Left card */}
               <div className="glass-card">

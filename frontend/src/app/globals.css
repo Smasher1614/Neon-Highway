@@ -110,8 +110,6 @@ html, body {
 
 /* ── Leaderboard rows ── */
 .lb-row {
-  display: flex; align-items: center; gap: 16px;
-  padding: 14px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.04);
   transition: background 0.15s;
 }
@@ -159,3 +157,148 @@ html, body {
   50%      { box-shadow: 0 0 14px rgba(239,68,68,0.9); }
 }
 .life-active { background: #ef4444; animation: pulse-glow 1.5s ease infinite; }
+
+/* ── Responsive: Canvas scaling ── */
+.canvas-scaler {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 480 / 640;
+  position: relative;
+}
+.canvas-scaler canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ── Responsive: Game HUD ── */
+.game-hud {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ── Responsive: Mobile controls ── */
+.mobile-controls {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  gap: 12px;
+}
+.mobile-btn {
+  flex: 1;
+  padding: 24px 0;
+  border-radius: 16px;
+  background: rgba(30,58,138,0.35);
+  border: 1px solid rgba(59,130,246,0.3);
+  color: #93c5fd;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.1s;
+  active-background: rgba(59,130,246,0.25);
+}
+.mobile-btn:active { background: rgba(59,130,246,0.25); }
+
+/* ── Responsive: Lobby grid (desktop side-by-side, mobile stacked) ── */
+.lobby-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+/* ── Responsive: Leaderboard columns ── */
+.lb-grid-header,
+.lb-grid-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 130px 70px;
+  gap: 8px;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+/* ── Responsive: Header ── */
+.site-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.site-logo-text {
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* ── Breakpoint: ≤ 640px (phones) ── */
+@media (max-width: 640px) {
+  /* Lobby: stack vertically */
+  .lobby-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Main padding */
+  .main-content {
+    padding: 16px 12px;
+  }
+
+  /* Header: shrink */
+  .site-header-inner {
+    height: 56px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .site-logo-text {
+    font-size: 16px;
+  }
+  .base-badge {
+    display: none;
+  }
+
+  /* Leaderboard: hide address column on phones */
+  .lb-grid-header,
+  .lb-grid-row {
+    grid-template-columns: 32px 1fr 60px;
+    gap: 6px;
+    padding: 10px 14px;
+  }
+  .lb-addr-col { display: none; }
+  .lb-score-col { font-size: 14px !important; }
+
+  /* Game canvas: already fluid via canvas-scaler */
+  .canvas-scaler {
+    max-width: 100%;
+  }
+
+  /* Mobile controls: bigger tap targets */
+  .mobile-btn {
+    padding: 28px 0;
+    font-size: 30px;
+    border-radius: 18px;
+  }
+
+  /* Camera switch button: full width */
+  .cam-switch-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Breakpoint: ≤ 400px (very small phones) ── */
+@media (max-width: 400px) {
+  .site-logo-text { font-size: 14px; }
+  .lb-grid-header,
+  .lb-grid-row {
+    padding: 8px 10px;
+  }
+}

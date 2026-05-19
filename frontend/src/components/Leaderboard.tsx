@@ -63,27 +63,16 @@ export default function Leaderboard() {
       </div>
 
       {/* Column headers */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '40px 1fr 130px 70px',
-        gap: 8,
-        padding: '10px 20px 6px',
-        borderBottom: '1px solid rgba(255,255,255,0.04)',
-      }}>
+      <div className="lb-grid-header" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
         <div style={{ fontSize: 11, color: '#334155', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>#</div>
         <div style={{ fontSize: 11, color: '#334155', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Racer</div>
-        <div style={{ fontSize: 11, color: '#334155', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Address</div>
+        <div className="lb-addr-col" style={{ fontSize: 11, color: '#334155', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Address</div>
         <div style={{ fontSize: 11, color: '#334155', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'right' }}>Score</div>
       </div>
 
       {/* Rows */}
       {DEMO_BOARD.map((entry, i) => (
-        <div key={i} className="lb-row" style={{
-          display: 'grid',
-          gridTemplateColumns: '40px 1fr 130px 70px',
-          gap: 8,
-          padding: '14px 20px',
-          alignItems: 'center',
+        <div key={i} className="lb-row lb-grid-row" style={{
           borderBottom: i < DEMO_BOARD.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
           transition: 'background 0.15s',
         }}
@@ -100,6 +89,7 @@ export default function Leaderboard() {
 
           {/* Address */}
           <a
+            className="lb-addr-col"
             href={`${BASE_EXPLORER}/address/${entry.player}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -111,7 +101,7 @@ export default function Leaderboard() {
           </a>
 
           {/* Score */}
-          <div style={{
+          <div className="lb-score-col" style={{
             textAlign: 'right',
             fontWeight: 900, fontSize: 17,
             color: scoreColor[i] ?? '#64748b',

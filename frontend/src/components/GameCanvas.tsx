@@ -498,7 +498,7 @@ export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCa
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, width: '100%' }}>
 
       {/* HUD */}
-      <div style={{ width: '100%', maxWidth: 480, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4px' }}>
+      <div className="game-hud" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4px' }}>
         {/* Lives */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ color: '#475569', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Lives</span>
@@ -529,8 +529,9 @@ export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCa
       </div>
 
       {/* Camera Switch */}
-      <div style={{ width: '100%', maxWidth: 480, display: 'flex', justifyContent: 'flex-end' }}>
+      <div className="game-hud" style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <button
+          className="cam-switch-btn"
           onClick={handleCameraSwitch}
           disabled={camPending || camConfirming || transitioning}
           style={{
@@ -549,8 +550,8 @@ export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCa
         </button>
       </div>
 
-      {/* Canvas wrapper */}
-      <div style={{ position: 'relative' }}>
+      {/* Canvas wrapper - fluid scaling */}
+      <div className="game-hud" style={{ position: 'relative' }}>
         {/* Crash flash */}
         {crashFlash && (
           <div className="crash-flash" style={{
@@ -572,7 +573,7 @@ export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCa
           </div>
         )}
 
-        <div className={cameraView === 'dashboard' ? 'cam-dashboard' : 'cam-top-down'} style={{ opacity: transitioning ? 0.2 : 1 }}>
+        <div className={`canvas-scaler ${cameraView === 'dashboard' ? 'cam-dashboard' : 'cam-top-down'}`} style={{ opacity: transitioning ? 0.2 : 1 }}>
           <canvas
             ref={canvasRef}
             width={CANVAS_W}
@@ -583,28 +584,18 @@ export default function GameCanvas({ username, onGameOver, bonusPoints }: GameCa
       </div>
 
       {/* Mobile controls */}
-      <div style={{ width: '100%', maxWidth: 480, display: 'flex', gap: 12 }}>
+      <div className="mobile-controls">
         <button
+          className="mobile-btn"
           onPointerDown={mobileLeft} onPointerUp={mobileRelease} onPointerLeave={mobileRelease}
-          style={{
-            flex: 1, padding: '20px 0', borderRadius: 12,
-            background: 'rgba(30,58,138,0.3)', border: '1px solid rgba(59,130,246,0.25)',
-            color: '#93c5fd', fontSize: 22, fontWeight: 700, cursor: 'pointer',
-            userSelect: 'none', touchAction: 'none',
-          }}
         >◀</button>
         <button
+          className="mobile-btn"
           onPointerDown={mobileRight} onPointerUp={mobileRelease} onPointerLeave={mobileRelease}
-          style={{
-            flex: 1, padding: '20px 0', borderRadius: 12,
-            background: 'rgba(30,58,138,0.3)', border: '1px solid rgba(59,130,246,0.25)',
-            color: '#93c5fd', fontSize: 22, fontWeight: 700, cursor: 'pointer',
-            userSelect: 'none', touchAction: 'none',
-          }}
         >▶</button>
       </div>
 
-      <p style={{ color: '#334155', fontSize: 12, textAlign: 'center' }}>← / → or A / D to steer</p>
+      <p style={{ color: '#334155', fontSize: 12, textAlign: 'center' }}>← / → or A / D to steer • tap arrows on mobile</p>
     </div>
   );
 }
