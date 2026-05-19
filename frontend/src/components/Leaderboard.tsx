@@ -28,7 +28,7 @@ const scoreColor: Record<number, string> = {
 
 export default function Leaderboard() {
   return (
-    <div className="glass-card" style={{ border: '1px solid rgba(59,130,246,0.2)' }}>
+    <div className="glass-card" style={{ border: '1px solid rgba(59,130,246,0.2)', width: '100%' }}>
 
       {/* Header */}
       <div style={{
