@@ -133,17 +133,11 @@ export default function Home() {
 
           {/* ════════ LOBBY ════════ */}
           {(screen === 'lobby' || screen === 'starting') && (
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 24,
-              maxWidth: 580,
-              margin: '0 auto',
-              width: '100%',
-            }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '16px' }}>
 
-              {/* Left card */}
-              <div className="glass-card">
+              {/* Start Racing card */}
+              <div style={{ width: '100%', minWidth: 0, flex: 'none' }}>
+              <div className="glass-card" style={{ width: '100%', minWidth: 0 }}>
 
                 {/* Banner */}
                 <div style={{
@@ -301,9 +295,12 @@ export default function Home() {
                   )}
                 </div>
               </div>
+              </div>
 
-              {/* Right: Leaderboard */}
-              <Leaderboard />
+              {/* Global Leaderboard card */}
+              <div style={{ width: '100%', minWidth: 0, flex: 'none' }}>
+                <Leaderboard />
+              </div>
             </div>
           )}
 
