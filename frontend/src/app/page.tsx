@@ -133,7 +133,14 @@ export default function Home() {
 
           {/* ════════ LOBBY ════════ */}
           {(screen === 'lobby' || screen === 'starting') && (
-            <div className="lobby-grid">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 24,
+              maxWidth: 580,
+              margin: '0 auto',
+              width: '100%',
+            }}>
 
               {/* Left card */}
               <div className="glass-card">
